@@ -1,10 +1,9 @@
 import {Square} from "./Square.jsx";
 
-export const Board = ({winner, bingoCard, selected, handleClick}) => {
+export const Board = ({bingoCard, selected, handleClick}) => {
   return (
     <div
       className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-500 to-indigo-900">
-      {winner && <p className="text-white font-bold">Bingo</p>}
       <div className="grid grid-rows-5 grid-cols-5 gap-2" style={{width: '500px', height: '500px'}}>
         {bingoCard.map((row, rowIndex) => (
           <div key={rowIndex} className="bingo-row">

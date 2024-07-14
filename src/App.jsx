@@ -4,6 +4,7 @@ import {centerFreeSpace, shuffleArray} from "./util/ShuffleArray.js";
 import {NavBar} from "./component/NavBar.jsx";
 import {Footer} from "./component/Footer.jsx";
 import {Board} from "./component/Board.jsx";
+import {Celebration} from "./component/Celebration.jsx";
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
   return (
     <>
       <NavBar/>
+      <Celebration celebrate={winner} />
       <Board handleClick={handleClick} bingoCard={bingoCard} winner={winner} selected={selected}/>
       <Footer/>
     </>
