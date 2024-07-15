@@ -3,8 +3,8 @@ import {Square} from "./Square.jsx";
 export const Board = ({bingoCard, selected, handleClick}) => {
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-500 to-indigo-900">
-      <div className="grid grid-rows-5 grid-cols-5 gap-2" style={{width: '500px', height: '500px'}}>
+      className="flex flex-col items-center justify-center min-h-screen py-8 bg-gradient-to-b from-blue-500 to-indigo-900">
+      <div className="grid grid-rows-5 grid-cols-5 gap-2 sm:h-[600px] sm:w-[600px] lg:h-[500px] lg:w-[500px]" >
         {bingoCard.map((row, rowIndex) => (
           <div key={rowIndex} className="bingo-row">
             {row.map((text, colIndex) => (

@@ -37,7 +37,7 @@ function App() {
       <NavBar/>
       <Celebration celebrate={winner} />
       <Board handleClick={handleClick} bingoCard={bingoCard} winner={winner} selected={selected}/>
-      <Footer/>
+      <Footer text="github" inc="2024 Semiao Inc. All rights reserved." link="https://github.com/Semiao91"/>
     </>
   )
 }

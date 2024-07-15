@@ -1,6 +1,15 @@
+import { useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
+
 export const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <nav className="bg-[#0052cc] text-white flex items-center p-4">
+    <nav className="bg-[#0052cc] text-white flex justify-between items-center p-6">
       <div className="flex items-center space-x-4">
         <img src="/cup.png" alt="Logo" className="h-12 w-12" />
         <div className="flex flex-col">
@@ -8,41 +17,40 @@ export const NavBar = () => {
           <span className="text-sm">GERMANY</span>
         </div>
       </div>
-      <div className="flex items-center space-x-6 ml-8">
-        <a href="#" className="hover:underline">
-          Bingo
+      <div className="flex space-x-6">
+        <a href="/" className="bg-yellow-500 text-black px-3 py-2 rounded-md">
+          New Bingo
         </a>
-        <a href="#" className="bg-yellow-500 text-black px-3 py-1 rounded-full">
-          Groups
-        </a>
-        <a href="#" className="hover:underline">
-          Video <span className="text-xs">&#9660;</span>
-        </a>
-        <a href="#" className="hover:underline">
-          Stats <span className="text-xs">&#9660;</span>
-        </a>
-        <a href="#" className="hover:underline">
-          Gaming <span className="text-xs">&#9660;</span>
-        </a>
-        <a href="#" className="hover:underline">
-          Teams
-        </a>
-        <a href="#" className="hover:underline">
-          News
-        </a>
-        <a href="#" className="hover:underline">
-          Tickets
-        </a>
-        <a href="#" className="hover:underline">
-          Event guide <span className="text-xs">&#9660;</span>
-        </a>
-        <a href="#" className="hover:underline">
-          History <span className="text-xs">&#9660;</span>
-        </a>
-        <a href="#" className="hover:underline">
-          More <span className="text-xs">&#9660;</span>
-        </a>
+        <div className="hidden md:flex space-x-6">
+          <a href="https://www.uefa.com/euro2024/fixtures-results/#/d/2024-07-14" className="hover:underline">
+            Matches
+          </a>
+          <a href="https://www.uefa.com/euro2024/teams/" className="hover:underline">
+            Teams
+          </a>
+        </div>
+        <button onClick={toggleMenu} className="md:hidden focus:outline-none">
+          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        </button>
       </div>
+      {isOpen && (
+        <div className="absolute top-20 right-0 w-full bg-[#0052cc] md:hidden">
+          <a
+            href="https://www.uefa.com/euro2024/fixtures-results/#/d/2024-07-14"
+            className="block text-center py-2 hover:underline"
+            onClick={toggleMenu}
+          >
+            Matches
+          </a>
+          <a
+            href="https://www.uefa.com/euro2024/teams/"
+            className="block text-center py-2 hover:underline"
+            onClick={toggleMenu}
+          >
+            Teams
+          </a>
+        </div>
+      )}
     </nav>
-  )
-}
+  );
+};
