@@ -8,6 +8,7 @@ import {Celebration} from "./component/Celebration.jsx";
 
 function App() {
 
+  const [isOpen, setIsOpen] = useState(false);
   const [winner, setWinner] = useState(false);
   const [selected, setSelected] = useState(Array.from(Array(25).fill(0)));
   const [bingoCard, setBingoCard] = useState([
@@ -18,12 +19,19 @@ function App() {
     ["Defensive clearance", "Dribble past player", "Cross into box", "Long-range goal", "Goal celebration"]
   ]);
 
+
+
   useEffect(() => {
     const array = [...bingoCard];
     shuffleArray(array);
     centerFreeSpace(array)
     setBingoCard(array);
   }, []);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
 
   const handleClick = (rowIndex, colIndex) => {
     const newSelected = [...selected];
@@ -34,7 +42,7 @@ function App() {
 
   return (
     <>
-      <NavBar/>
+      <NavBar toggleMenu={toggleMenu} isOpen={isOpen}/>
       <Celebration celebrate={winner} />
       <Board handleClick={handleClick} bingoCard={bingoCard} winner={winner} selected={selected}/>
       <Footer text="github" inc="2024 Semiao Inc. All rights reserved." link="https://github.com/Semiao91"/>

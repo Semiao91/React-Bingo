@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
-export const NavBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export const NavBar = ({toggleMenu , isOpen}) => {
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <nav className="bg-[#0052cc] text-white flex justify-between items-center p-6">
