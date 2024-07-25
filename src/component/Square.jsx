@@ -1,16 +1,10 @@
-export const Square = ({text, onClick, val, square, emoji}) => {
+export const Square = ({text, onClick, val, square, emoji, background}) => {
   return (
     <button
-      className={`${square} h-[75px] w-[65px] sm:h-[80px] sm:w-[80px] md:h-[90px] md:w-[90px] lg:h-[100px] lg:w-[100px] my-6 lg:my-0  bg-gradient-to-b flex items-center justify-center border border-gray-300 rounded-md px-2 sm:px-4 py-1 sm:py-2 transition-colors`}
+      className={`${square} ${background} h-[75px] w-[65px] sm:h-[80px] sm:w-[80px] md:h-[90px] md:w-[90px] lg:h-[160px] lg:w-[160px] my-6 lg:my-0 flex items-center justify-center px-2 sm:px-4 py-1 text-[#596579] sm:py-2 transition-colors`}
       onClick={onClick}
-      style={{
-        background: square.includes('selected')
-          ? 'green'
-          : 'linear-gradient(to bottom, #0928c8, #001d8e)',
-        color: 'white',
-      }}
     >
-      <span className={` ${emoji} text-xs sm:text-sm font-semibold`}>{text}</span>
+      <span className={` ${emoji} lg:text-2xl sm:text-sm font-semibold`}>{square.includes('selected') ? "⚽" : text}</span>
       {val}
     </button>
   );

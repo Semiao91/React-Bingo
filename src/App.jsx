@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import {checkWinningCondition} from "./util/CheckWinner.js";
 import {centerFreeSpace, shuffleArray} from "./util/ShuffleArray.js";
-import {NavBar} from "./component/NavBar.jsx";
 import {Footer} from "./component/Footer.jsx";
 import {Board} from "./component/Board.jsx";
 import {Celebration} from "./component/Celebration.jsx";
@@ -20,17 +19,12 @@ function App() {
   ]);
 
 
-
   useEffect(() => {
     const array = [...bingoCard];
     shuffleArray(array);
     centerFreeSpace(array)
     setBingoCard(array);
   }, []);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
 
   const handleClick = (rowIndex, colIndex) => {
@@ -42,9 +36,8 @@ function App() {
 
   return (
     <>
-      <NavBar toggleMenu={toggleMenu} isOpen={isOpen}/>
-      <Celebration celebrate={winner} />
-      <Board handleClick={handleClick} bingoCard={bingoCard} winner={winner} selected={selected} />
+      <Celebration celebrate={winner}/>
+      <Board handleClick={handleClick} bingoCard={bingoCard} winner={winner} selected={selected}/>
       <Footer text="github" inc="2024 Semiao Inc. All rights reserved." link="https://github.com/Semiao91"/>
     </>
   )
