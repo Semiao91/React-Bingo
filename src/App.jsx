@@ -1,13 +1,11 @@
 import {useEffect, useState} from "react";
 import {checkWinningCondition} from "./util/CheckWinner.js";
 import {centerFreeSpace, shuffleArray} from "./util/ShuffleArray.js";
-import {Footer} from "./component/Footer.jsx";
 import {Board} from "./component/Board.jsx";
-import {Celebration} from "./component/Celebration.jsx";
+import {Firework} from "./component/Firework.jsx";
 
 function App() {
 
-  const [isOpen, setIsOpen] = useState(false);
   const [winner, setWinner] = useState(false);
   const [selected, setSelected] = useState(Array.from(Array(25).fill(0)));
   const [bingoCard, setBingoCard] = useState([
@@ -22,9 +20,19 @@ function App() {
   useEffect(() => {
     const array = [...bingoCard];
     shuffleArray(array);
-    centerFreeSpace(array)
+    centerFreeSpace(array);
     setBingoCard(array);
   }, []);
+
+  useEffect(() => {
+    if (winner) {
+      const timer = setTimeout(() => {
+        setWinner(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [winner]);
 
 
   const handleClick = (rowIndex, colIndex) => {
@@ -36,9 +44,13 @@ function App() {
 
   return (
     <>
-      <Celebration celebrate={winner}/>
+      {winner && <img
+        className={`z-10 absolute left-0 right-0 top-[150px] lg:top-[280px] md:top-[280px] sm:top-[235px] ml-auto w-[100px] md:w-[200px] sm:w-[150px] mr-auto ${winner ? 'fade-in' : 'fade-out'}`}
+        src={'/goal.png'}
+        alt="logo"
+      />}
+      <Firework celebrate={winner}/>
       <Board handleClick={handleClick} bingoCard={bingoCard} winner={winner} selected={selected}/>
-      <Footer text="github" inc="2024 Semiao Inc. All rights reserved." link="https://github.com/Semiao91"/>
     </>
   )
 }

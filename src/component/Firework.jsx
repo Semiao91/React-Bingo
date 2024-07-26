@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { Fireworks } from 'fireworks-js';
+import React, {useEffect, useRef} from 'react';
+import {Fireworks} from 'fireworks-js';
 
 export const Firework = ({ celebrate }) => {
   const containerRef = useRef(null);
+  const fireworksRef = useRef(null);
 
   useEffect(() => {
     if (celebrate && containerRef.current) {
@@ -28,13 +29,18 @@ export const Firework = ({ celebrate }) => {
       };
 
       const fireworks = new Fireworks(containerRef.current, options);
+      fireworksRef.current = fireworks;
+
       fireworks.start();
 
       return () => {
-        fireworks.stop();
+        if (fireworksRef.current) {
+          fireworksRef.current.stop();
+          fireworksRef.current = null;
+        }
       };
     }
   }, [celebrate]);
 
-  return <div ref={containerRef} className="fireworks-container fixed top-0 left-0 w-full h-full pointer-events-none z-2" />;
+  return <div ref={containerRef} className="fireworks-container absolute top-0 left-0 w-full h-full pointer-events-none z-2" />;
 };
