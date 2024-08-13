@@ -20,6 +20,6 @@ To play React Football Bingo, simply visit the live demo or clone the repository
 
 ## Links:
 
-Live Demo: https://eurobingo.netlify.app/
+Live Demo: semiaobingo.netlify.app/
 
 Enjoy the game and have fun watching football with React Football Bingo!
